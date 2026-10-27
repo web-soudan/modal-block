@@ -4,7 +4,8 @@
  * Handles opening/closing modals with keyboard accessibility
  */
 
-document.addEventListener( 'DOMContentLoaded', function () {
+// ページ内のすべてのモーダルを初期化する
+function initModals() {
 	// Find all modal blocks
 	const modals = document.querySelectorAll( '.hm-modal-trigger' );
 
@@ -202,4 +203,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			}
 		} );
 	} );
-} );
+}
+
+// DOMContentLoaded のあとに実行された場合はイベントが二度と起きず、モーダルが一つも開かなくなるため、すぐ初期化する
+if ( document.readyState === 'loading' ) {
+	document.addEventListener( 'DOMContentLoaded', initModals );
+} else {
+	initModals();
+}

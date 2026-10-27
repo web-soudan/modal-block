@@ -38,5 +38,6 @@ add_action( 'init', function() {
 } );
 
 add_action( 'wp_enqueue_scripts', function() {
-	wp_script_add_data( 'hm-modal-trigger-view-script', 'strategy', 'async' );
+	// async だと回線が遅いときに DOMContentLoaded のあとで実行されるため、その前に実行される defer にする.
+	wp_script_add_data( 'hm-modal-trigger-view-script', 'strategy', 'defer' );
 } );
